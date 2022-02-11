@@ -40,11 +40,12 @@ int main()
 
     struct CurvePoint Q = {.x = Px, .y = Py, .z = a};
     struct CurvePoint ladder = montgomeryLadder(&Q, &n);
-    printBinaryFEWithLabel("montgomeryLadder", &ladder);
-
-    struct FieldElement retrive_y = retrive_yn(&a, &ladder.x);
-    printCPBinaryWithLabel("retrive_yn()", &retrive_y);
-
+    printCPBinaryWithLabel("montgomeryLadder", &ladder);
+    
+    struct CurvePoint Q1 = {.x = a, .y = b, .z = n};
+    struct CurvePoint Q2 = {.x = ladder.x, .y = b, .z = n};
+    struct FieldElement retrive_y = retrive_yn(&Q1, &Q2);
+    printBinaryFEWithLabel("retrive_yn()", &retrive_y);
     // TODO add solution code
 
     return 0;
